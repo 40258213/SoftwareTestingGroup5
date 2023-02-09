@@ -18,12 +18,6 @@ public class Account {
 		this.account_opening_date = account_opening_date;
 	}
 	
-//	@Override
-//	public String toString() {
-//		return "Account: Account Number = " + account_number + ", Username of account holder="
-//				+ username_of_account_holder + ", Account Type = " + account_type + ", Account Opening Date = "
-//				+ account_opening_date;
-//	}
 	public String toString() {
 		return account_number + ", " + username_of_account_holder + ", " + account_type + ", " + account_opening_date;
 	}
