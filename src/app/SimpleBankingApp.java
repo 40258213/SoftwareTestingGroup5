@@ -120,9 +120,5 @@ public class SimpleBankingApp {
 		// let's print the accounts and their balance to see if the above transaction have impacted their balances
 		//System.out.println("After transactions: 520.00 and 21.00");
 		printAllAccounts();
-		// TODO: TALK ABOUT THE TRANSACTION BEING DONE IN GETBALANCE METHOD
-		
-
 	}
-
 }

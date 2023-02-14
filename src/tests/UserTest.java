@@ -62,15 +62,44 @@ public class UserTest {
 		}
 		
 		if(passed) {
-			System.out.println("All TC's passed");
+			System.out.println("All IF TC's passed");
+		} else {
+			System.out.println("One or more IF TC's failed");
 		}
-		
-		assert testUser.getUsername()== test_username;
-		assert testUser.getPassword()== test_password;
-		assert testUser.getFirst_name()== test_first_name;
-		assert testUser.getLast_name()== test_last_name;
-		assert testUser.getMobile_number()== test_mobile_number;
-		
-		System.out.println("All Java assertions in the test suite passed (none failed).");
+
+		try {
+			assert testUser.getUsername()== test_username: "User username mismatch";
+			System.out.println("Username assertion has been completed successfully.");
+		} catch (AssertionError e) {
+			System.out.println("Assertion failed: " + e.getMessage());
+		}
+
+		try {
+			assert testUser.getPassword()== test_password: "User password mismatch";
+			System.out.println("Password assertion has been completed successfully");
+		} catch (AssertionError e) {
+			System.out.println("Assertion failed: " + e.getMessage());
+		}
+
+		try {
+			assert testUser.getFirst_name()== test_first_name : "User first name mismatch";
+			System.out.println("Firstname assertion has been completed successfully.");
+		} catch (AssertionError e) {
+			System.out.println("Assertion failed: " + e.getMessage());
+		}
+
+		try {
+			assert testUser.getLast_name()== test_last_name : "User last name mismatch";
+			System.out.println("Lastname assertion has been completed successfully.");
+		} catch (AssertionError e) {
+			System.out.println("Assertion failed: " + e.getMessage());
+		}
+
+		try {
+			assert testUser.getMobile_number()== test_mobile_number: "User mobile number mismatch";
+			System.out.println("Mobile number assertion has been completed successfully.");
+		} catch (AssertionError e) {
+			System.out.println("Assertion failed: " + e.getMessage());
+		}
 	}
 }

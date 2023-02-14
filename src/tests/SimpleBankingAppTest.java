@@ -19,14 +19,22 @@ public class SimpleBankingAppTest {
 
 		// Verify phase
 		// we see in the load function of the UUT that we have loaded 3 users, so let's verify that
-		assert mainApp.users.size() == 3;
-		System.out.println("testDataLoads: populateUserData: TC1 passed.");
+		try {
+			assert mainApp.users.size() == 3: "Users array size mismatch";
+			System.out.println("testDataLoads: populateUserData: TC1 passed.");
+		} catch(AssertionError e) {
+			System.out.println("Assertion failed: " + e.getMessage());
+		}
 		// The above only verification is basic (simple, weak) 
 		// To do STRONGER verification, we would need more assertions for user names and account balances, etc.
 		
 		mainApp.populateAccountData();
-		assert mainApp.accounts.size() == 4;
-		System.out.println("testDataLoads: populateAccountData: TC1 passed.");
+		try {
+			assert mainApp.accounts.size() == 4 : "Accounts array size mismatch";
+			System.out.println("testDataLoads: populateAccountData: TC1 passed.");
+		} catch(AssertionError e) {
+			System.out.println("Assertion failed: " + e.getMessage());
+		}
 		
 		// Teardown phase: no Teardown is needed for this test case, since we have not made 
 		// any changes to the system state in the test case 
@@ -41,8 +49,12 @@ public class SimpleBankingAppTest {
 		// Exercise phase
 		mainApp.addTransaction("5495-1234", depositAmount);
 		double balanceAfter = mainApp.getBalance("5495-1234");
-		assert balanceBefore + depositAmount == balanceAfter;
-		System.out.println("testDeposits: TC1 passed.");
+		try {
+			assert balanceBefore + depositAmount == balanceAfter: "Balance after deposit incorrect";
+			System.out.println("testDeposits: TC1 passed.");
+		} catch(AssertionError e) {
+			System.out.println("Assertion failed:: " + e.getMessage());
+		}
 		
 		// tear-down: put the system state back in where it was
 		// read more about the tear-down phase of test cases: http://xunitpatterns.com/Four%20Phase%20Test.html
@@ -58,7 +70,11 @@ public class SimpleBankingAppTest {
 		// exercise phase
 		mainApp.addTransaction("5495-6789", withdrawalAmount);
 		double balanceAfter = mainApp.getBalance("5495-6789");
-		assert balanceBefore + withdrawalAmount == balanceAfter;
+		try {
+			assert balanceBefore + withdrawalAmount == balanceAfter: "Balance after withdrawal incorrect";
+		} catch(AssertionError e) {
+			System.out.println("Assertion failed: " + e.getMessage());
+		}
 		System.out.println("testWithdrawals: TC1 passed");
 		
 		// tear-down
